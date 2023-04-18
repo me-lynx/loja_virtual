@@ -5,23 +5,25 @@ import 'package:flutter/material.dart';
 class FteamTextFormField extends StatelessWidget {
   FteamTextFormField(
       {super.key,
-      required this.senha,
+      required this.textoController,
       this.obscureText,
-      required this.icon,
+      this.icon,
       this.hintText,
+      this.textInputType,
       this.validator});
 
   bool? obscureText = false;
-  final TextEditingController senha;
+  final TextEditingController textoController;
   Widget? icon;
   String? hintText;
-
   String? Function(String?)? validator;
+  TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: senha,
+      controller: textoController,
+      keyboardType: textInputType,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
