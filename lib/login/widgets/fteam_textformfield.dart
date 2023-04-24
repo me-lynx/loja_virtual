@@ -10,6 +10,7 @@ class FteamTextFormField extends StatelessWidget {
       this.icon,
       this.hintText,
       this.textInputType,
+      this.sufixIcon,
       this.validator});
 
   bool? obscureText = false;
@@ -18,18 +19,22 @@ class FteamTextFormField extends StatelessWidget {
   String? hintText;
   String? Function(String?)? validator;
   TextInputType? textInputType;
+  Widget? sufixIcon;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       controller: textoController,
       keyboardType: textInputType,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
+        suffixIcon: sufixIcon,
         border: const OutlineInputBorder(),
         icon: icon,
+        suffixIconColor: Colors.white,
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.grey),
+        hintStyle: const TextStyle(color: Colors.white),
       ),
       validator: validator,
     );

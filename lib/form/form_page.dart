@@ -20,10 +20,13 @@ class _FormPageState extends State<FormPage> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text(
-          'Teste',
-          style: TextStyle(color: Colors.white),
+          'Cadastro',
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -67,16 +70,29 @@ class _FormPageState extends State<FormPage> {
               'Sexo',
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: DropdownButton<String>(
-                  items: list.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (value) {}),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(9),
+                    border: Border.all(
+                      color: Colors.white,
+                    )),
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        items:
+                            list.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (value) {}),
+                  ),
+                ),
+              ),
             ),
             ElevatedButton(
               onPressed: () {

@@ -13,7 +13,9 @@ class _LoginPageState extends State<LoginPage> {
   final _nomeDeUsuario = TextEditingController();
   final _senha = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _mostrarSenha = false;
 
+//TODO: Colocar onfocus na tela
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,11 +52,20 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                //TODO: COLOCAR OLHINHO
                 FteamTextFormField(
+                  sufixIcon: GestureDetector(
+                    child: _mostrarSenha
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onTap: () {
+                      setState(() {
+                        _mostrarSenha = !_mostrarSenha;
+                      });
+                    },
+                  ),
                   icon: const Icon(Icons.lock),
                   textoController: _senha,
-                  obscureText: true,
+                  obscureText: _mostrarSenha,
                   hintText: 'SENHA',
                 ),
                 Row(
