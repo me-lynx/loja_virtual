@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/form/form_page.dart';
+import 'package:loja_virtual/home/home_page.dart';
 import 'package:loja_virtual/login/widgets/fteam_textformfield.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,12 +41,12 @@ class _LoginPageState extends State<LoginPage> {
                   textoController: _nomeDeUsuario,
                   hintText: 'NOME DE USUÁRIO',
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Por favor, informe seu e-mail';
-                    }
-                    if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                      return 'Por favor, informe um e-mail válido';
-                    }
+                    // if (value!.isEmpty) {
+                    //   return 'Por favor, informe seu e-mail';
+                    // }
+                    // if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                    //   return 'Por favor, informe um e-mail válido';
+                    // }
                     return null;
                   },
                 ),
@@ -63,6 +64,12 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                   ),
+                  validator: (value) {
+                    // if (value!.isEmpty) {
+                    //   return 'Digite sua senha';
+                    // }
+                    return null;
+                  },
                   icon: const Icon(Icons.lock),
                   textoController: _senha,
                   obscureText: _mostrarSenha,
@@ -85,7 +92,14 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const HomePage(),
+                            ),
+                          );
+                        }
                       },
                       child: const Text('Entrar'),
                     ),

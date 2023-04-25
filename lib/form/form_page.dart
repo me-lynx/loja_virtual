@@ -77,19 +77,27 @@ class _FormPageState extends State<FormPage> {
                     borderRadius: BorderRadius.circular(9),
                     border: Border.all(
                       color: Colors.white,
-                    )),
+                    ),
+                    color: Colors.white),
                 width: MediaQuery.of(context).size.width,
                 child: Center(
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
+                        hint: Text('Sexo'),
                         items:
                             list.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value),
+                            child: Text(
+                              value,
+                            ),
                           );
                         }).toList(),
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          // setState(() {
+                          //   value = value;
+                          // });
+                        }),
                   ),
                 ),
               ),
