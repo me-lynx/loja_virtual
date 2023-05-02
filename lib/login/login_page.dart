@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loja_virtual/form/form_page.dart';
-import 'package:loja_virtual/home/home_page.dart';
 import 'package:loja_virtual/login/widgets/fteam_textformfield.dart';
+import 'package:loja_virtual/routes_helper/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -93,12 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const HomePage(),
-                            ),
-                          );
+                          Navigator.of(context).pushNamed(Routes().homePage);
                         }
                       },
                       child: const Text('Entrar'),
@@ -107,12 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.only(left: 40),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const FormPage(),
-                            ),
-                          );
+                          Navigator.of(context).pushNamed(Routes().formPage);
                         },
                         child: const Text('Cadastrar'),
                       ),

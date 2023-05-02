@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loja_virtual/routes_helper/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,9 +16,6 @@ class _HomePageState extends State<HomePage> {
     ),
     Container(
       color: Colors.red,
-    ),
-    Container(
-      color: Colors.purple,
     ),
   ];
   int _selectedIndex = 0;
@@ -68,6 +67,133 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            const Card(
+              color: Color(0xfFF2F2F2),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.gears,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      'Configurações',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Card(
+              color: Color(0xfFF2F2F2),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.locationCrosshairs,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      'Endereço',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Card(
+              color: Color(0xfFF2F2F2),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.userShield,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      'Informações Pessoais',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Card(
+              color: Color(0xfFF2F2F2),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.creditCard,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      'Pagamento',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(Routes().helpPage);
+              },
+              child: const SizedBox(
+                height: 100,
+                child: Card(
+                  color: Color(0xfFA4DA95),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.circleInfo,
+                          color: Colors.black,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Ajuda',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -77,18 +203,13 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.grey,
         iconSize: 30,
         items: const <BottomNavigationBarItem>[
-          //TODO: Colocar icone de carrinho
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_business_rounded),
+            icon: FaIcon(FontAwesomeIcons.cartShopping),
             label: 'Comprar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_box_sharp),
-            label: 'Usuário',
           ),
         ],
         currentIndex: _selectedIndex,
