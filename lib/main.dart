@@ -7,7 +7,7 @@ import 'package:loja_virtual/home/drawer_screens/personal_info.dart';
 import 'package:loja_virtual/home/drawer_screens/settings_page.dart';
 import 'package:loja_virtual/home/home_page.dart';
 import 'package:loja_virtual/login/login_page.dart';
-import 'package:loja_virtual/login/request_password_page.dart';
+import 'package:loja_virtual/login/recovery_password_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const LoginPage(),
         '/home_page': (context) => const HomePage(),
-        '/request_password_page': (context) => const RequestPasswordPage(),
+        '/request_password_page': (context) => const RecoveryPasswordPage(),
         '/form_page': (context) => const FormPage(),
         '/help_page': (context) => const HelpPage(),
         '/address_page': (context) => const AddressPage(),

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loja_virtual/routes_helper/routes.dart';
 
+import '../constants/constants.dart';
+
+//TODO: COLOCAR BOTAO SAIR
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -10,9 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Constants _constants = Constants();
   static final List<Widget> _widgetOptions = <Widget>[
     Container(
-      color: Colors.blueGrey,
+      color: Colors.white,
     ),
     Container(
       color: Colors.red,
@@ -67,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const Card(
+            Card(
               color: Color(0xfFF2F2F2),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -79,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     Text(
-                      'Configurações',
+                      _constants.settings,
                       style: TextStyle(color: Colors.black),
                     ),
                     Icon(
@@ -91,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Card(
+            Card(
               color: Color(0xfFF2F2F2),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -103,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     Text(
-                      'Endereço',
+                      _constants.address,
                       style: TextStyle(color: Colors.black),
                     ),
                     Icon(
@@ -115,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Card(
+            Card(
               color: Color(0xfFF2F2F2),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -127,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     Text(
-                      'Informações Pessoais',
+                      _constants.personalInfo,
                       style: TextStyle(color: Colors.black),
                     ),
                     Icon(
@@ -139,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const Card(
+            Card(
               color: Color(0xfFF2F2F2),
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -151,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                     ),
                     Text(
-                      'Pagamento',
+                      _constants.payment,
                       style: TextStyle(color: Colors.black),
                     ),
                     Icon(
@@ -167,7 +172,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).pushNamed(Routes().helpPage);
               },
-              child: const SizedBox(
+              child: SizedBox(
                 height: 100,
                 child: Card(
                   color: Color(0xfFA4DA95),
@@ -184,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
-                            'Ajuda',
+                            _constants.help,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -202,14 +207,14 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         iconSize: 30,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: _constants.home,
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.cartShopping),
-            label: 'Comprar',
+            label: _constants.cart,
           ),
         ],
         currentIndex: _selectedIndex,
