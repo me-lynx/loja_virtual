@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loja_virtual/cart/view/cart_page.dart';
 import 'package:loja_virtual/routes_helper/routes.dart';
-
+import 'package:sizer/sizer.dart';
 import '../constants/constants.dart';
-
-//TODO: COLOCAR BOTAO SAIR
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,9 +18,7 @@ class _HomePageState extends State<HomePage> {
     Container(
       color: Colors.white,
     ),
-    Container(
-      color: Colors.red,
-    ),
+    CartPage(),
   ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -35,134 +32,167 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
+        width: SizerUtil.deviceType == DeviceType.web ? 80.w : 75.w,
         child: ListView(
           children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
-              curve: Curves.easeInCirc,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.person_2,
-                        size: 30,
-                        color: Colors.black,
+            SizedBox(
+              height: SizerUtil.deviceType == DeviceType.web ? 30.h : 25.h,
+              child: DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                ),
+                curve: Curves.easeInCirc,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 5.h,
+                      width: 10.w,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.person_2,
+                          size: 20.sp,
+                          color: Colors.black,
+                        ),
+                        // backgroundImage: NetworkImage(userAvatarUrl),
                       ),
-                      // backgroundImage: NetworkImage(userAvatarUrl),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'João das Neves',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    Padding(
+                      padding: EdgeInsets.all(
+                          SizerUtil.deviceType == DeviceType.web ? 1.w : 3.w),
+                      child: Text(
+                        'João das Neves',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizerUtil.deviceType == DeviceType.web
+                                ? 8.sp
+                                : 12.sp),
+                      ),
                     ),
-                  ),
-                  const Text(
-                    'joaodasneves@joao.com.br',
-                    style: TextStyle(color: Colors.white, fontSize: 10),
-                  ),
-                ],
+                    Text(
+                      'joaodasneves@joao.com.br',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: SizerUtil.deviceType == DeviceType.web
+                              ? 5.sp
+                              : 8.sp),
+                    ),
+                  ],
+                ),
               ),
             ),
             Card(
-              color: Color(0xfFF2F2F2),
+              color: const Color(0xfFF2F2F2),
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(1.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FaIcon(
                       FontAwesomeIcons.gears,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 20.sp,
                     ),
                     Text(
                       _constants.settings,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.grey,
-                      size: 10,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 10.sp,
                     ),
                   ],
                 ),
               ),
             ),
             Card(
-              color: Color(0xfFF2F2F2),
+              color: const Color(0xfFF2F2F2),
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(1.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FaIcon(
                       FontAwesomeIcons.locationCrosshairs,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 20.sp,
                     ),
                     Text(
                       _constants.address,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.grey,
-                      size: 10,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 10.sp,
                     ),
                   ],
                 ),
               ),
             ),
             Card(
-              color: Color(0xfFF2F2F2),
+              color: const Color(0xfFF2F2F2),
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(1.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FaIcon(
                       FontAwesomeIcons.userShield,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 20.sp,
                     ),
                     Text(
                       _constants.personalInfo,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.grey,
-                      size: 10,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 10.sp,
                     ),
                   ],
                 ),
               ),
             ),
             Card(
-              color: Color(0xfFF2F2F2),
+              color: const Color(0xfFF2F2F2),
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(1.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FaIcon(
                       FontAwesomeIcons.creditCard,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 20.sp,
                     ),
                     Text(
                       _constants.payment,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.grey,
-                      size: 10,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 10.sp,
                     ),
                   ],
                 ),
@@ -173,11 +203,11 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).pushNamed(Routes().helpPage);
               },
               child: SizedBox(
-                height: 100,
+                height: 10.h,
                 child: Card(
-                  color: Color(0xfFA4DA95),
+                  color: const Color(0xfFA4DA95),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -185,17 +215,45 @@ class _HomePageState extends State<HomePage> {
                         FaIcon(
                           FontAwesomeIcons.circleInfo,
                           color: Colors.black,
+                          size: SizerUtil.deviceType == DeviceType.web
+                              ? 12.sp
+                              : 20.sp,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: 2.h),
                           child: Text(
                             _constants.help,
-                            style: TextStyle(color: Colors.black),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ),
                       ],
                     ),
                   ),
+                ),
+              ),
+            ),
+            Card(
+              color: const Color(0xfFF2F2F2),
+              child: Padding(
+                padding: EdgeInsets.all(1.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.arrowRightFromBracket,
+                      color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 20.sp,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 2.h),
+                      child: Text(
+                        _constants.exit,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -206,14 +264,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
-        iconSize: 30,
+        iconSize: 30.sp,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              size: 20.sp,
+            ),
             label: _constants.home,
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.cartShopping),
+            icon: FaIcon(
+              FontAwesomeIcons.cartShopping,
+              size: 20.sp,
+            ),
             label: _constants.cart,
           ),
         ],

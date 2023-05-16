@@ -3,6 +3,7 @@ import 'package:loja_virtual/constants/constants.dart';
 import 'package:loja_virtual/login/widgets/fteam_textformfield.dart';
 import 'package:loja_virtual/routes_helper/routes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,17 +31,23 @@ class _LoginPageState extends State<LoginPage> {
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Padding(
-              padding: const EdgeInsets.all(15),
+              padding: SizerUtil.deviceType == DeviceType.web
+                  ? EdgeInsets.all(15.h)
+                  : EdgeInsets.all(6.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height:
+                        SizerUtil.deviceType == DeviceType.web ? 30.h : 10.h,
                   ),
                   FteamTextFormField(
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.solidUser,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 15.sp,
                     ),
                     textoController: _nomeDeUsuario,
                     hintText: _constants.userName,
@@ -54,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: SizerUtil.deviceType == DeviceType.web ? 4.h : 3.h,
                   ),
                   FteamTextFormField(
                     sufixIcon: GestureDetector(
@@ -74,9 +81,12 @@ class _LoginPageState extends State<LoginPage> {
                       // }
                       return null;
                     },
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.lock,
                       color: Colors.black,
+                      size: SizerUtil.deviceType == DeviceType.web
+                          ? 12.sp
+                          : 15.sp,
                     ),
                     textoController: _senha,
                     obscureText: _mostrarSenha,
@@ -90,31 +100,61 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.of(context)
                               .pushNamed(Routes().requestPasswordPage);
                         },
-                        child: Text(_constants.passwordRecover),
+                        child: Text(
+                          _constants.passwordRecover,
+                          style: TextStyle(
+                              fontSize: SizerUtil.deviceType == DeviceType.web
+                                  ? 5.sp
+                                  : 10.sp),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height:
+                        SizerUtil.deviceType == DeviceType.web ? 12.h : 10.h,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.of(context).pushNamed(Routes().homePage);
-                          }
-                        },
-                        child: Text(_constants.enter),
+                      SizedBox(
+                        height: 5.h,
+                        width: SizerUtil.deviceType == DeviceType.web
+                            ? 20.w
+                            : 30.w,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context)
+                                  .pushNamed(Routes().homePage);
+                            }
+                          },
+                          child: Text(
+                            _constants.enter,
+                            style: TextStyle(
+                                fontSize: SizerUtil.deviceType == DeviceType.web
+                                    ? 5.sp
+                                    : 10.sp),
+                          ),
+                        ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40),
+                      SizedBox(
+                        height: 5.h,
+                        width: SizerUtil.deviceType == DeviceType.web
+                            ? 20.w
+                            : 30.w,
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pushNamed(Routes().formPage);
                           },
-                          child: Text(_constants.signUp),
+                          child: Text(
+                            _constants.signUp,
+                            style: TextStyle(
+                                fontSize: SizerUtil.deviceType == DeviceType.web
+                                    ? 5.sp
+                                    : 10.sp),
+                          ),
                         ),
                       ),
                     ],

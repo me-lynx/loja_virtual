@@ -16,6 +16,7 @@ class Constants {
   String help = "Ajuda";
   String home = "Início";
   String cart = "Carrinho";
+  String exit = "Sair";
 }
 
 enum Gender { female, male, prefernottosay }
