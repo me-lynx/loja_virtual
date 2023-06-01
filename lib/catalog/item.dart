@@ -9,7 +9,8 @@ class Item extends Equatable {
   final String name;
   final Color color;
   final int price = 0;
+  final bool isFavorite = false;
 
   @override
-  List<Object> get props => [id, name, color, price];
+  List<Object> get props => [id, name, color, price, isFavorite];
 }

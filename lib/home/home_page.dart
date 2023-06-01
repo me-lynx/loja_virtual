@@ -6,6 +6,12 @@ import 'package:sizer/sizer.dart';
 import '../catalog/view/catalog_page.dart';
 import '../constants/constants.dart';
 
+//Na tela de inicio teremos o carregamento dos itens favoritados.
+//precisamos pensar em uma navegação dinamica entre o menu
+//validação de itens favoritados
+//correção de fluxos entre as tabs com a navegação dinamica
+//resolver o cadastro
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -16,11 +22,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Constants _constants = Constants();
   static final List<Widget> _widgetOptions = <Widget>[
-    CatalogPage(),
     Container(
       color: Colors.white,
     ),
     const CartPage(),
+    CatalogPage(),
   ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {

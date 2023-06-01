@@ -4,6 +4,7 @@ import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
 
 import '../../cart/bloc/cart_bloc.dart';
 import '../../cart/bloc/cart_event.dart';
+import '../../cart/bloc/cart_state.dart';
 import '../bloc/catalog_bloc.dart';
 import '../bloc/catalog_state.dart';
 import '../item.dart';
@@ -81,14 +82,15 @@ class CatalogListItem extends StatelessWidget {
                     child: isFavorite
                         // ignore: dead_code
                         ? const FaIcon(FontAwesomeIcons.heart)
-                        : FaIcon(FontAwesomeIcons.heart),
+                        : const FaIcon(FontAwesomeIcons.heart),
                     onTap: () {
                       context.read<CatalogBloc>().add(ItemFavorited(item));
                       //Criar um bloc para favorito.
                     },
                   ),
-                  GestureDetector(
-                      child: const FaIcon(FontAwesomeIcons.plus), onTap: () {}),
+                  AddIconButton(
+                    item: item,
+                  ),
                 ],
               ),
               SizedBox(
@@ -105,6 +107,37 @@ class CatalogListItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class AddIconButton extends StatelessWidget {
+  const AddIconButton({
+    super.key,
+    required this.item,
+  });
+
+  final Item item;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        if (state is CartLoading) {
+          return const CircularProgressIndicator();
+        }
+        if (state is CartLoaded) {
+          final isInCart = state.cart.items.contains(item);
+          return TextButton(
+              onPressed: isInCart
+                  ? null
+                  : () => context.read<CartBloc>().add(CartItemAdded(item)),
+              child: isInCart
+                  ? const FaIcon(FontAwesomeIcons.check)
+                  : const FaIcon(FontAwesomeIcons.plus));
+        }
+        return const Text('Algo deu errado!');
+      },
     );
   }
 }

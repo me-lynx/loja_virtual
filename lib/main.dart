@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/cart/bloc/cart_bloc.dart';
 import 'package:loja_virtual/cart/bloc/cart_event.dart';
+import 'package:loja_virtual/cart/view/cart_page.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_bloc.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
 import 'package:loja_virtual/form/form_page.dart';
@@ -36,8 +38,13 @@ class MyApp extends StatelessWidget {
       return MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => CatalogBloc(shoppingRepository: shoppingRepository)
-                ..add(CatalogStarted()))
+            create: (_) => CatalogBloc(shoppingRepository: shoppingRepository)
+              ..add(
+                CatalogStarted(),
+              ),
+          ),
+          BlocProvider(
+              create: (_) => CartBloc(shoppingRepository)..add(CartStarted()))
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -55,6 +62,7 @@ class MyApp extends StatelessWidget {
             '/payment_info_page': (context) => const PaymentInfoPage(),
             '/personal_info_page': (context) => const PersonalInfoPage(),
             '/settings_page': (context) => const SettingsPage(),
+            '/cart_page': (context) => const CartPage(),
           },
         ),
       );
