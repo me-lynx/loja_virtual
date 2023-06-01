@@ -41,9 +41,8 @@ class _CatalogPageState extends State<CatalogPage> {
               if (state is CatalogLoaded) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) => CatalogListItem(
-                      item: state.catalog.getByPosition(index),
-                    ),
+                    (context, index) =>
+                        CatalogListItem(item: state.catalog.itemNames[index]),
                     childCount: state.catalog.itemNames.length,
                   ),
                 );
@@ -79,9 +78,9 @@ class CatalogListItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    child: isFavorite
+                    child: item.isFavorite
                         // ignore: dead_code
-                        ? const FaIcon(FontAwesomeIcons.heart)
+                        ? const FaIcon(FontAwesomeIcons.heartCircleCheck)
                         : const FaIcon(FontAwesomeIcons.heart),
                     onTap: () {
                       context.read<CatalogBloc>().add(ItemFavorited(item));
@@ -96,7 +95,7 @@ class CatalogListItem extends StatelessWidget {
               SizedBox(
                 width: 300,
                 height: 300,
-                child: Image.asset('images/image5shoes.jpeg'),
+                child: Image.asset(item.image),
               ),
               Text(item.price.toString()),
               Row(

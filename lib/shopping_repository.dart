@@ -2,28 +2,17 @@ import 'catalog/item.dart';
 
 const _delay = Duration(milliseconds: 800);
 
-const _catalog = [
-  'Code Smell',
-  'Control Flow',
-  'Interpreter',
-  'Recursion',
-  'Sprint',
-  'Heisenbug',
-  'Spaghetti',
-  'Hydra Code',
-  'Off-By-One',
-  'Scope',
-  'Callback',
-  'Closure',
-  'Automata',
-  'Bit Shift',
-  'Currying',
+final _catalog = [
+  Item(1, 'Tênis de Academia', 200.0, false, 'images/image4shoes.jpg'),
+  Item(2, 'Bota Vermelha', 140.0, false, 'images/image5shoes.jpeg'),
+  Item(3, 'Sapato boneca', 230.0, false, 'images/image6shoes.jpeg'),
+  Item(4, 'Sapato ', 100.0, true, 'images/image7shoes.jpeg'),
 ];
 
 class ShoppingRepository {
   final _items = <Item>[];
 
-  Future<List<String>> loadCatalog() => Future.delayed(_delay, () => _catalog);
+  Future<List<Item>> loadCatalog() => Future.delayed(_delay, () => _catalog);
 
   Future<List<Item>> loadCartItems() => Future.delayed(_delay, () => _items);
 

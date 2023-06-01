@@ -5,10 +5,18 @@ import '../item.dart';
 class Catalog extends Equatable {
   const Catalog({required this.itemNames});
 
-  final List<String> itemNames;
+  final List<Item> itemNames;
 
-  Item getById(int id) => Item(id, itemNames[id % itemNames.length]);
-  Item getByPosition(int position) => getById(position);
+  Item getById(int id) {
+    int index = itemNames.indexWhere((item) => item.id == id);
+    return itemNames[index];
+  }
+
+  List<Item> getAll() {
+    return itemNames;
+  }
+
+  // Item getByPosition(int position) => getById(position);
 
   @override
   List<Object?> get props => [itemNames];

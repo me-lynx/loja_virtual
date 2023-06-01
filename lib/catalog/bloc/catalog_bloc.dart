@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_state.dart';
+import 'package:loja_virtual/catalog/item.dart';
 
 import '../../cart/bloc/cart_state.dart';
 import '../../shopping_repository.dart';
@@ -32,6 +33,7 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
     final state = this.state;
     try {
       shoppingRepository.addItemToFavorite(event.item);
+      // emit(Item(event.item.id, event.item.id, price, true, event.item.image));
     } catch (e) {
       print(e);
     }
