@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../bloc/cart_bloc.dart';
 import '../bloc/cart_state.dart';
 
+//TODO: Incluir na proxima mentoria as cores dos produtos.
+/// E NO CATALOGO TAMBEM
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
@@ -46,68 +48,89 @@ class CartList extends StatelessWidget {
           );
         }
         if (state is CartLoaded) {
-          return ListView.separated(
-              itemBuilder: (context, index) {
-                final item = state.cart.items[index];
-                return Card(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      final item = state.cart.items[index];
+                      return Card(
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(30),
+                          child: Column(
                             children: [
-                              GestureDetector(
-                                onTap: () => context
-                                    .read<CartBloc>()
-                                    .add(CartItemRemoved(item)),
-                                child: const FaIcon(
-                                  FontAwesomeIcons.x,
-                                  size: 12,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => context
+                                        .read<CartBloc>()
+                                        .add(CartItemRemoved(item)),
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.x,
+                                      size: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: Image.asset(item.image),
+                                  ),
+                                  Text(item.name),
+                                  Text(
+                                    ' R\$ ${item.price.toString()}',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child:
+                                          const FaIcon(FontAwesomeIcons.minus)),
+                                  SizedBox(
+                                    height: 60,
+                                    width: 30,
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                          border: InputBorder.none,
+                                          fillColor: Colors.pink),
+                                    ),
+                                  ),
+                                  TextButton(
+                                      onPressed: () {},
+                                      child:
+                                          const FaIcon(FontAwesomeIcons.plus)),
+                                ],
                               ),
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: Image.asset(item.image),
-                              ),
-                              Text(item.name),
-                              Text(item.price.toString()),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              TextButton(
-                                  onPressed: () {},
-                                  child: const FaIcon(FontAwesomeIcons.minus)),
-                              SizedBox(
-                                height: 60,
-                                width: 30,
-                                child: TextFormField(
-                                  decoration: const InputDecoration(
-                                      border: InputBorder.none,
-                                      fillColor: Colors.pink),
-                                ),
-                              ),
-                              TextButton(
-                                  onPressed: () {},
-                                  child: const FaIcon(FontAwesomeIcons.plus)),
-                            ],
-                          ),
-                          //TRAZER O PREÇO DO CARRINHO
-                        ],
-                      ),
-                    ));
-              },
-              separatorBuilder: (_, __) => const Divider(),
-              itemCount: state.cart.items.length);
+                        ),
+                      );
+                    },
+                    separatorBuilder: (_, __) => const Spacer(),
+                    itemCount: state.cart.items.length),
+              ),
+              Text(
+                ' Total: R\$ ${state.cart.totalPrice}',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Avançar'),
+              ),
+            ],
+          );
         }
 
         return Container();

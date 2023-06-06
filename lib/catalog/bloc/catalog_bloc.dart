@@ -38,4 +38,11 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
       print(e);
     }
   }
+
+  Future<void> _getFavorites(
+      ItemFavorited event, Emitter<CatalogState> emit) async {
+    final state = this.state;
+
+    final catalog = await shoppingRepository.loadCatalog();
+  }
 }

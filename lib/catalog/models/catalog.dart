@@ -16,6 +16,19 @@ class Catalog extends Equatable {
     return itemNames;
   }
 
+  List<Item> getAllFavorites() {
+    var results = itemNames.where((element) {
+      if (element.isFavorite == true) {
+        return true;
+      } else {
+        return false;
+      }
+    }).toList();
+    return results;
+  }
+
+  //return  itemNames.contains(true);
+
   // Item getByPosition(int position) => getById(position);
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loja_virtual/cart/view/cart_page.dart';
+import 'package:loja_virtual/home/home_content_page.dart';
 import 'package:loja_virtual/routes_helper/routes.dart';
 import 'package:sizer/sizer.dart';
 import '../catalog/view/catalog_page.dart';
@@ -22,9 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final Constants _constants = Constants();
   static final List<Widget> _widgetOptions = <Widget>[
-    Container(
-      color: Colors.white,
-    ),
+    const HomeContentPage(),
     const CartPage(),
     CatalogPage(),
   ];
