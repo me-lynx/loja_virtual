@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/cart/bloc/cart_event.dart';
 import 'package:loja_virtual/cart/models/cart.dart';
+import 'package:loja_virtual/order/order_details_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../routes_helper/routes.dart';
 import '../bloc/cart_bloc.dart';
 import '../bloc/cart_state.dart';
 
@@ -128,7 +130,12 @@ class CartList extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: false).push(
+                      MaterialPageRoute(
+                          builder: (context) => OrderDetailsPage(),
+                          maintainState: false));
+                },
                 child: const Text('Avançar'),
               ),
             ],

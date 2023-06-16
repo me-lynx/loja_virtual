@@ -13,6 +13,7 @@ import 'package:loja_virtual/home/drawer_screens/settings_page.dart';
 import 'package:loja_virtual/home/home_page.dart';
 import 'package:loja_virtual/login/login_page.dart';
 import 'package:loja_virtual/login/recovery_password_page.dart';
+import 'package:loja_virtual/order/order_details_page.dart';
 import 'package:loja_virtual/shopping_repository.dart';
 import 'package:sizer/sizer.dart';
 
@@ -54,7 +55,9 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => const LoginPage(),
-            '/home_page': (context) => const HomePage(),
+            '/home_page': (context) => MyHomePage(
+                  title: 'Tst',
+                ),
             '/request_password_page': (context) => const RecoveryPasswordPage(),
             '/form_page': (context) => const FormPage(),
             '/help_page': (context) => const HelpPage(),
@@ -63,6 +66,7 @@ class MyApp extends StatelessWidget {
             '/personal_info_page': (context) => const PersonalInfoPage(),
             '/settings_page': (context) => const SettingsPage(),
             '/cart_page': (context) => const CartPage(),
+            '/order_details_page': (context) => const OrderDetailsPage(),
           },
         ),
       );

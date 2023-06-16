@@ -8,4 +8,5 @@ class Routes {
   String settingsPage = '/settings_page';
   String requestPasswordPage = '/request_password_page';
   String cartPage = '/cart_page';
+  String orderDetailsPage = '/order_details_page';
 }
