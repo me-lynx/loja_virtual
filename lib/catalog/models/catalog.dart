@@ -27,10 +27,6 @@ class Catalog extends Equatable {
     return results;
   }
 
-  //return  itemNames.contains(true);
-
-  // Item getByPosition(int position) => getById(position);
-
   @override
   List<Object?> get props => [itemNames];
 }

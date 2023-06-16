@@ -67,7 +67,7 @@ class CatalogListItem extends StatelessWidget {
     bool isFavorite = false;
     return SizedBox(
       child: Card(
-        color: Colors.white,
+        surfaceTintColor: Colors.white,
         margin: EdgeInsets.all(10),
         child: Padding(
           padding: EdgeInsets.all(20),

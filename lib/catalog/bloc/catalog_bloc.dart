@@ -32,7 +32,12 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
       ItemFavorited event, Emitter<CatalogState> emit) async {
     final state = this.state;
     try {
-      shoppingRepository.addItemToFavorite(event.item);
+      event.item.isFavorite == true;
+      shoppingRepository.addItemToFavorite(true);
+      // emit(ItemFavorited(item: Cart(items: [...state.cart.items, event.item])));
+      emit(CatalogItemFavorited());
+      ItemFavorited(event.item);
+
       // emit(Item(event.item.id, event.item.id, price, true, event.item.image));
     } catch (e) {
       print(e);

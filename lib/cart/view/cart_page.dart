@@ -55,7 +55,9 @@ class CartList extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final item = state.cart.items[index];
                       return Card(
-                        color: Colors.white,
+                        surfaceTintColor: Colors.white,
+                        borderOnForeground: true,
+                        elevation: 2,
                         child: Padding(
                           padding: const EdgeInsets.all(30),
                           child: Column(

@@ -12,8 +12,11 @@ class CatalogStarted extends CatalogEvent {
 }
 
 class ItemFavorited extends CatalogEvent {
-  const ItemFavorited(this.item);
+  const ItemFavorited(
+    this.item,
+  );
   final Item item;
+
   @override
   List<Object> get props => [item];
 }
