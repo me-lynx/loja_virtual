@@ -131,9 +131,11 @@ class CartList extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context, rootNavigator: false).push(
-                      MaterialPageRoute(
-                          builder: (context) => OrderDetailsPage(),
+                  Navigator.of(context, rootNavigator: false)
+                      .push(MaterialPageRoute(
+                          builder: (context) => OrderDetailsPage(
+                                cart: state.cart,
+                              ),
                           maintainState: false));
                 },
                 child: const Text('Avançar'),

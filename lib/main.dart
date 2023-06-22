@@ -66,7 +66,6 @@ class MyApp extends StatelessWidget {
             '/personal_info_page': (context) => const PersonalInfoPage(),
             '/settings_page': (context) => const SettingsPage(),
             '/cart_page': (context) => const CartPage(),
-            '/order_details_page': (context) => const OrderDetailsPage(),
           },
         ),
       );
