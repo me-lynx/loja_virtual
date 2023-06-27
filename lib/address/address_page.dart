@@ -68,7 +68,7 @@ class _AddressPageState extends State<AddressPage> {
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
-                      searchCep.clear();
+                      logradouro.clear();
                     });
                   },
                   icon: const Icon(Icons.clear),
