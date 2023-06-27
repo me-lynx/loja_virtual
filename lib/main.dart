@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/address/address_page.dart';
 import 'package:loja_virtual/cart/bloc/cart_bloc.dart';
 import 'package:loja_virtual/cart/bloc/cart_event.dart';
 import 'package:loja_virtual/cart/view/cart_page.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_bloc.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
 import 'package:loja_virtual/form/form_page.dart';
-import 'package:loja_virtual/home/drawer_screens/address_page.dart';
 import 'package:loja_virtual/home/drawer_screens/help_page.dart';
 import 'package:loja_virtual/home/drawer_screens/payment_info.dart';
 import 'package:loja_virtual/home/drawer_screens/personal_info.dart';

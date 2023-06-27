@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../address/address_page.dart';
 import '../cart/models/cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -141,9 +142,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
                   ],
                 ),
-                const FaIcon(
-                  FontAwesomeIcons.arrowRight,
-                  size: 20,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const AddressPage()));
+                  },
+                  child: const FaIcon(
+                    FontAwesomeIcons.arrowRight,
+                    size: 20,
+                  ),
                 ),
               ],
             ),
