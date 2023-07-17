@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/constants/constants.dart';
 
+import '../Auth/auth.dart';
 import '../login/widgets/fteam_textformfield.dart';
+import '../routes_helper/routes.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
@@ -37,7 +39,7 @@ class _FormPageState extends State<FormPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _constants.completedUsername,
+              _constants.userNameEmail,
               style: const TextStyle(color: Colors.white),
             ),
             Padding(
@@ -45,64 +47,6 @@ class _FormPageState extends State<FormPage> {
               child: FteamTextFormField(
                 textoController: _nome,
                 obscureText: false,
-              ),
-            ),
-            Text(
-              _constants.cpf,
-              style: const TextStyle(color: Colors.white),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: FteamTextFormField(
-                textoController: _cpf,
-                obscureText: false,
-              ),
-            ),
-            Text(
-              _constants.cellPhone,
-              style: const TextStyle(color: Colors.white),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: FteamTextFormField(
-                textoController: _celular,
-                obscureText: false,
-              ),
-            ),
-            Text(
-              _constants.gender,
-              style: const TextStyle(color: Colors.white),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9),
-                    border: Border.all(
-                      color: Colors.white,
-                    ),
-                    color: Colors.white),
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: Text(_constants.gender),
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        // setState(() {
-                        //   value = value;
-                        // });
-                      },
-                    ),
-                  ),
-                ),
               ),
             ),
             Text(
@@ -117,7 +61,10 @@ class _FormPageState extends State<FormPage> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Auth().registerWithEmailAndPassword(_nome.text, _password.text);
+                //Navigator.of(context).pushNamed(Routes().homePage);
+              },
               child: Text(_constants.signUp),
             ),
           ],

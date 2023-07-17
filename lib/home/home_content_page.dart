@@ -28,11 +28,10 @@ class _HomeContentPageState extends State<HomeContentPage> {
                   ),
                 );
               }
-
               if (state is CatalogLoaded) {
                 var item = state.catalog.getAllFavorites();
                 return SliverToBoxAdapter(
-                  child: Container(
+                  child: SizedBox(
                     height: 100.0,
                     width: 100,
                     child: ListView.builder(
@@ -82,8 +81,10 @@ class FavoritedItems extends StatelessWidget {
           )),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: Text(item.name,
-                style: const TextStyle(fontWeight: FontWeight.w600)),
+            child: Text(
+              item.name,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
           ),
         ],
       ),

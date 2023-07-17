@@ -5,7 +5,7 @@ class Constants {
   String signUp = "Cadastrar";
   String signUpTitlePage = "Cadastro";
   String passwordRecover = "Recuperar Senha";
-  String completedUsername = "Nome completo";
+  String userNameEmail = "Email";
   String cpf = "CPF";
   String cellPhone = "Celular";
   String gender = "Gênero";

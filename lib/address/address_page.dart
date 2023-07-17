@@ -17,66 +17,87 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   TextEditingController searchCep = TextEditingController();
   TextEditingController logradouro = TextEditingController();
+  TextEditingController complemento = TextEditingController();
+  TextEditingController uf = TextEditingController();
+  TextEditingController bairro = TextEditingController();
+  TextEditingController cidade = TextEditingController();
+
   late Address address;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: searchCep,
-              style: const TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintStyle: const TextStyle(color: Colors.black),
-                suffixIcon: IconButton(
-                  onPressed: () {
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            TextFormFieldComponent(controller: searchCep),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    address = await loadAddress(searchCep.text);
                     setState(() {
-                      searchCep.clear();
+                      logradouro.text = address.logradouro!;
+                      cidade.text = address.cidade!;
+                      uf.text = address.uf!;
+                      bairro.text = address.bairro!;
+                      complemento.text = address.complemento!;
                     });
                   },
-                  icon: const Icon(Icons.clear),
+                  child: const Text('Buscar'),
                 ),
-              ),
+              ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () async {
-                  address = await loadAddress(searchCep.text);
-                  setState(() {
-                    logradouro.text = address.logradouro!;
-                  });
-                },
-                child: const Text('Buscar'),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
+            TextFormFieldComponent(
               controller: logradouro,
-              style: const TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintStyle: const TextStyle(color: Colors.black),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      logradouro.clear();
-                    });
-                  },
-                  icon: const Icon(Icons.clear),
-                ),
-              ),
             ),
-          ),
-        ],
+            TextFormFieldComponent(controller: cidade),
+            TextFormFieldComponent(
+              controller: uf,
+            ),
+            TextFormFieldComponent(controller: bairro),
+            TextFormFieldComponent(controller: complemento),
+            TextButton(onPressed: () {}, child: const Text('Salvar')),
+          ],
+        ),
+      ),
+    );
+  }
+
+  changeState(String value) {
+    setState(() {});
+  }
+}
+
+//resolver o estado.
+//colocar como statefull
+class TextFormFieldComponent extends StatelessWidget {
+  const TextFormFieldComponent({
+    super.key,
+    required this.controller,
+    this.setsstate,
+  });
+
+  final TextEditingController controller;
+  final Function(String value)? setsstate;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      style: const TextStyle(color: Colors.black),
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        hintStyle: const TextStyle(color: Colors.black),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.clear),
+        ),
       ),
     );
   }

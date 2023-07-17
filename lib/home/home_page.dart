@@ -392,7 +392,8 @@ class _MyHomePageState extends State<MyHomePage> {
       key: navigatorKeys[_selectedIndex],
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-            builder: (_) => _widgetOptions.elementAt(_selectedIndex));
+          builder: (_) => _widgetOptions.elementAt(_selectedIndex),
+        );
       },
     );
   }
