@@ -13,16 +13,37 @@ class Auth {
     //salvar no banco de dados depois.
   }
 
+
+
+
   //loginemailesenha
-  Future<void> loginWithEmailAndPassword(String email, String password) async {
-    await _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<String?> loginWithEmailAndPassword(String email, String password) async {
+    try{
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    }
+    on FirebaseException catch (e){
+  return e.message;
+    }
+    catch (e){}
+
+
   }
 
   getCurrentUser() async {
     _auth.currentUser;
   }
-
-  recoverPassword(String email) {
-    _auth.sendPasswordResetEmail(email: email);
+  Future<String?>recoverPassword(String email) async  {
+    try{
+      await _auth.sendPasswordResetEmail(email: email);
+      return "Email enviado";
+    }
+    on FirebaseException catch (e){
+      if (e.code == "user-not-found"){
+        return "Usuario nao encontrado";
+      }
+    }
+    catch (e){
+      return "Usuario nao encontrado";
+    }
   }
 }

@@ -23,12 +23,13 @@ class _LoginPageState extends State<LoginPage> {
   final Constants _constants = Constants();
   final bool _isUserAuth = false;
 
-//TODO: Colocar onfocus na tela
-  ///TODO: Validar se o usuario logou ou não pra avançar as telas
-  ///TODO: Se o usuario for vazio no retorno da api ou vier mensagem de erro, avisar o usuario.
+  ///DONE: Validar se o usuario logou ou não pra avançar as telas - Ok!
+  ///DONE: Se o usuario for vazio no retorno da api ou vier mensagem de erro, avisar o usuario - Ok!.
   ///TODO: Olhar mensagens de retorno do Firebase e mapear os erros comuns;
-  ///TODO: Recuperar senha - utilizar os métodos do firebase de envio de e-mail
-  ///TODO: Validar código de recuperação de senha com o Firebase
+  ///TODO: RemoteConfig - dar uma explorada.
+  ///TODO: Carregamento dos itens vindo do firebase.
+  ///TODO: Reatorar o widget de snackbar.
+  ///DONE: Recuperar senha - utilizar os métodos do firebase de envio de e-mail - Ok!
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (_formKey.currentState!.validate()) {
                               //validaçao de usuario não encontrado
                               loginUser();
-                              Navigator.of(context)
-                                  .pushNamed(Routes().homePage);
+
                             }
                           },
                           child: Text(
@@ -180,10 +180,27 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  bool loginUser() {
-    Auth().loginWithEmailAndPassword(_nomeDeUsuario.text, _senha.text);
-    // User.fromJson(user.toString());
-    Auth().getCurrentUser();
-    return true;
+  Future<String?> loginUser() async  {
+   var retorno = await Auth().loginWithEmailAndPassword(_nomeDeUsuario.text, _senha.text);
+
+  if (retorno != ""){
+    snackBarMessage(retorno!, context);
+  }
+  else{
+    Navigator.of(context)
+        .pushNamed(Routes().homePage);
+  }
+  }
+  void snackBarMessage(String? message, BuildContext context) {
+    final snackBar = SnackBar(
+      content:  Text(message!),
+      action: SnackBarAction(
+        label: 'Fechar',
+        onPressed: () {
+          // Some code to undo the change.
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/constants/constants.dart';
 import 'package:loja_virtual/login/widgets/fteam_textformfield.dart';
 
+import '../Auth/auth.dart';
+
 class RecoveryPasswordPage extends StatefulWidget {
   const RecoveryPasswordPage({super.key});
 
@@ -35,11 +37,27 @@ class _RecoveryPasswordPageState extends State<RecoveryPasswordPage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              var teste = await Auth().recoverPassword(_nomeDeUsuario.text);
+              snackBarMessage(teste, context);
+            },
             child: Text(_constants.passwordRecover),
           ),
         ],
       ),
     );
+  }
+
+  void snackBarMessage(String? message, BuildContext context) {
+      final snackBar = SnackBar(
+      content:  Text(message!),
+      action: SnackBarAction(
+        label: 'Fechar',
+        onPressed: () {
+          // Some code to undo the change.
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
