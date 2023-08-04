@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_state.dart';
 import 'package:loja_virtual/catalog/item.dart';
-
+import 'package:firebase_database/firebase_database.dart';
 import '../../cart/bloc/cart_state.dart';
 import '../../shopping_repository.dart';
 import '../models/catalog.dart';
@@ -12,6 +12,7 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
   CatalogBloc({required this.shoppingRepository}) : super(CatalogLoading()) {
     on<CatalogStarted>(_onStarted);
     on<ItemFavorited>(_onItemFavorited);
+    
     // on<CatalogItemFavorited>(_onItemFavorited);
   }
 
@@ -19,10 +20,17 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
 
   Future<void> _onStarted(
       CatalogStarted event, Emitter<CatalogState> emit) async {
-    emit(CatalogLoading());
+
     try {
-      final catalog = await shoppingRepository.loadCatalog();
-      emit(CatalogLoaded(Catalog(itemNames: catalog)));
+      // final ref = FirebaseDatabase.instance.ref();
+      //
+      // final snapshot = await ref.child('catalogo').get();
+      //
+      // if (snapshot.exists){
+      //   print(snapshot.value);
+      // }
+      //(CatalogLoaded(catalog));
+
     } catch (e) {
       print(e);
     }

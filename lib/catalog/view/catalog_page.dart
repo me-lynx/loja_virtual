@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
-
+import 'package:firebase_database/firebase_database.dart';
 import '../../cart/bloc/cart_bloc.dart';
 import '../../cart/bloc/cart_event.dart';
 import '../../cart/bloc/cart_state.dart';
@@ -10,6 +12,9 @@ import '../bloc/catalog_state.dart';
 import '../item.dart';
 import 'package:sizer/sizer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../item.dart';
 
 class CatalogPage extends StatefulWidget {
   const CatalogPage({super.key});
@@ -19,40 +24,79 @@ class CatalogPage extends StatefulWidget {
   State<CatalogPage> createState() => _CatalogPageState();
 }
 
+//Enviar o carrinho para o firebase
+//Editar o total do carrinho
+//Editar o total do pedido
+//Enviar o pedido para o firebase
+
 class _CatalogPageState extends State<CatalogPage> {
+  List<Item> items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchItems();
+  }
+
+  fetchItems() async {
+    final snapshot =
+        await FirebaseFirestore.instance.collection('catalogo').get();
+    var ret = snapshot.docs.map((e) => _getItemsFromSnaphot(e)).toList();
+
+    setState(() {
+      items = ret;
+    });
+    print(ret);
+  }
+
+  Item _getItemsFromSnaphot(DocumentSnapshot snapshot) {
+    var data = snapshot.data() as Map<String, dynamic>?;
+    if (data == null) {
+      throw 'DocumentSnapshot vazio';
+    }
+    String nome = data['nome'] ?? '';
+    String id = data['id'] ?? '';
+    String imagem = data['imagem'] ?? '';
+    bool isfavorite = data['isfavorite'] ?? false;
+    String preco = data['preco'] ?? '';
+    String color = data['color'] ?? '';
+    return Item(
+        id: id,
+        name: nome,
+        price: preco,
+        isFavorite: isfavorite,
+        image: imagem,
+        color: color);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catálogo'),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 12)),
-          BlocBuilder<CatalogBloc, CatalogState>(
-            builder: (context, state) {
-              if (state is CatalogLoading) {
-                return const SliverFillRemaining(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-              if (state is CatalogLoaded) {
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) =>
-                        CatalogListItem(item: state.catalog.itemNames[index]),
-                    childCount: state.catalog.itemNames.length,
-                  ),
-                );
-              }
-              return const SliverFillRemaining(
-                child: Text('Ocorreu um erro'),
-              );
-            },
-          ),
-        ],
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Card(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      child: Image.network(items[index].image),
+                      width: 60,
+                      height: 60,
+                    ),
+                    Text(items[index].name),
+                    Text(items[index].price.toString()),
+                    AddIconButton(item:items[index]),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+        itemCount: items.length,
       ),
     );
   }
@@ -62,6 +106,7 @@ class CatalogListItem extends StatelessWidget {
   const CatalogListItem({super.key, required this.item});
 
   final Item item;
+
   @override
   Widget build(BuildContext context) {
     bool isFavorite = false;

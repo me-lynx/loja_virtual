@@ -85,7 +85,7 @@ class CartList extends StatelessWidget {
                                   SizedBox(
                                     width: 100,
                                     height: 100,
-                                    child: Image.asset(item.image),
+                                    child: Image.network(item.image),
                                   ),
                                   Text(item.name),
                                   Text(
@@ -93,28 +93,6 @@ class CartList extends StatelessWidget {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  TextButton(
-                                      onPressed: () {},
-                                      child:
-                                          const FaIcon(FontAwesomeIcons.minus)),
-                                  SizedBox(
-                                    height: 60,
-                                    width: 30,
-                                    child: TextFormField(
-                                      decoration: const InputDecoration(
-                                          border: InputBorder.none,
-                                          fillColor: Colors.pink),
-                                    ),
-                                  ),
-                                  TextButton(
-                                      onPressed: () {},
-                                      child:
-                                          const FaIcon(FontAwesomeIcons.plus)),
                                 ],
                               ),
                             ],
@@ -126,7 +104,7 @@ class CartList extends StatelessWidget {
                     itemCount: state.cart.items.length),
               ),
               Text(
-                ' Total: R\$ ${state.cart.totalPrice}',
+                ' Total: R',
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               ElevatedButton(

@@ -15,17 +15,17 @@ class Catalog extends Equatable {
   List<Item> getAll() {
     return itemNames;
   }
-
-  List<Item> getAllFavorites() {
-    var results = itemNames.where((element) {
-      if (element.isFavorite == true) {
-        return true;
-      } else {
-        return false;
-      }
-    }).toList();
-    return results;
-  }
+  //
+  // List<Item> getAllFavorites() {
+  //   var results = itemNames.where((element) {
+  //     if (element.isFavorite == true) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }).toList();
+  //   return results;
+  // }
 
   @override
   List<Object?> get props => [itemNames];

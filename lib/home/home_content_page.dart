@@ -3,8 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_bloc.dart';
 import 'package:loja_virtual/catalog/bloc/catalog_state.dart';
 import 'package:loja_virtual/catalog/view/catalog_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../catalog/item.dart';import 'dart:async';
 
-import '../catalog/item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loja_virtual/catalog/bloc/catalog_event.dart';
+
+import '../../cart/bloc/cart_bloc.dart';
+import '../../cart/bloc/cart_event.dart';
+import '../../cart/bloc/cart_state.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeContentPage extends StatefulWidget {
   const HomeContentPage({super.key});
@@ -29,20 +42,20 @@ class _HomeContentPageState extends State<HomeContentPage> {
                 );
               }
               if (state is CatalogLoaded) {
-                var item = state.catalog.getAllFavorites();
-                return SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 100.0,
-                    width: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: item.length,
-                      itemBuilder: (context, index) {
-                        return FavoritedItems(item: item[index]);
-                      },
-                    ),
-                  ),
-                );
+                // var item = state.catalog.getAllFavorites();
+                // return SliverToBoxAdapter(
+                //   child: SizedBox(
+                //     height: 100.0,
+                //     width: 100,
+                //     child: ListView.builder(
+                //       scrollDirection: Axis.horizontal,
+                //       itemCount: item.length,
+                //       itemBuilder: (context, index) {
+                //         return FavoritedItems(item: item[index]);
+                //       },
+                //     ),
+                //   ),
+                // );
 
                 // return SliverList(
                 //   delegate: SliverChildBuilderDelegate((context, index) {

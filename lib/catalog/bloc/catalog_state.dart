@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../item.dart';
 import '../models/catalog.dart';
 
 abstract class CatalogState extends Equatable {
@@ -13,8 +14,7 @@ class CatalogLoading extends CatalogState {}
 
 //carregou o catalogo
 class CatalogLoaded extends CatalogState {
-  const CatalogLoaded(this.catalog);
-  final Catalog catalog;
+  const CatalogLoaded(List<Item> catalog);
 }
 
 //erro relacionado ao catalogo

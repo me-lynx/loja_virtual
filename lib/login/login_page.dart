@@ -4,6 +4,7 @@ import 'package:loja_virtual/constants/constants.dart';
 import 'package:loja_virtual/login/widgets/fteam_textformfield.dart';
 import 'package:loja_virtual/routes_helper/routes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loja_virtual/widgets/snack_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../user/user.dart';
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   ///TODO: Olhar mensagens de retorno do Firebase e mapear os erros comuns;
   ///TODO: RemoteConfig - dar uma explorada.
   ///TODO: Carregamento dos itens vindo do firebase.
-  ///TODO: Reatorar o widget de snackbar.
+  ///TODO: Reatorar o widget de snackbar. -- aguardar
   ///DONE: Recuperar senha - utilizar os métodos do firebase de envio de e-mail - Ok!
 
   @override
@@ -183,14 +184,19 @@ class _LoginPageState extends State<LoginPage> {
   Future<String?> loginUser() async  {
    var retorno = await Auth().loginWithEmailAndPassword(_nomeDeUsuario.text, _senha.text);
 
-  if (retorno != ""){
-    snackBarMessage(retorno!, context);
+  if (retorno != "")
+  {
+    Navigator.of(context)
+        .pushNamed(Routes().homePage);
+    //snackBarMessage(retorno!, context);
   }
   else{
     Navigator.of(context)
         .pushNamed(Routes().homePage);
   }
   }
+
+
   void snackBarMessage(String? message, BuildContext context) {
     final snackBar = SnackBar(
       content:  Text(message!),
