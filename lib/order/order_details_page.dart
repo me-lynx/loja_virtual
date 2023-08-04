@@ -214,7 +214,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       'Subtotal',
                     ),
                     Text(
-                      ' R\$ ${widget.cart.totalPrice.toString()}',
+                      ' R',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -226,7 +226,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(255, 212, 204, 238)),
             child: Text(
-              ' Finalizar Pedido -  Total: (R\$ ${widget.cart.totalPrice.toString()})',
+              ' Finalizar Pedido -  Total: ',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () {},
